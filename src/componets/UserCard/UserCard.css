@@ -1,0 +1,65 @@
+.user-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin: 20px;
+}
+
+.user-profile {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.user-actions {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.like-button, .email-toggle-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.like-button {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.like-button:hover {
+  background: #bbdefb;
+}
+
+.email-toggle-button {
+  background: #f5f5f5;
+  color: #f71414;
+}
+
+.email-toggle-button:hover {
+  background: #e0e0e0;
+}
+
+.user-email {
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.like-icon {
+  margin-right: 5px;
+}
