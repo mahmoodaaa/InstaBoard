@@ -1,0 +1,17 @@
+/* Footer.css */
+.footer {
+  background-color: #1a1a1a;
+  color: #eee;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-content p {
+  margin: 0;
+  color: #aaa;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}

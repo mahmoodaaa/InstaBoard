@@ -1,62 +1,104 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Body background with elegant gradient + image overlay */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff;
+  line-height: 1.6;
 }
 
-body.light-mode {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+/* Main container with glassmorphism */
+.app-container {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(18px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  max-width: 1200px;
+  margin: 3rem auto;
+  transition: all 0.3s ease;
+}
+
+.app-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+p {
+  margin-bottom: 1rem;
   color: #333;
 }
 
-body.dark-mode {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  color: #ffffff;
+a {
+  color: #0077ff;
+  text-decoration: none;
+  transition: 0.2s;
+}
+a:hover {
+  text-decoration: underline;
 }
 
-body.light-mode .app-container {
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Buttons */
+button,
+.btn {
+  background: #4a90e2;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-body.dark-mode .app-container {
-  background: linear-gradient(rgba(45, 45, 45, 0.9), rgba(45, 45, 45, 0.9));
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+button:hover,
+.btn:hover {
+  background: #357bd8;
+  transform: translateY(-2px);
 }
 
-/* Add some basic spacing and typography */
-button {
-  font-family: inherit;
-  font-size: 16px;
-}
-
-h1, h2, h3 {
-  color: inherit;
-  margin-bottom: 1rem;
-}
-
-/* Responsive design adjustments */
+/* Responsive */
 @media (max-width: 768px) {
   .app-container {
-    padding: 10px;
+    padding: 1.2rem;
+    margin: 1rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
   }
 }
 
-.App {
-  text-align: center;
+/* Dark mode */
+body.dark-mode {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #f1f1f1;
 }
 
+body.dark-mode .app-container {
+  background: rgba(35, 35, 35, 0.95);
+  color: #f1f1f1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* App Branding */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -66,21 +108,6 @@ h1, h2, h3 {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {

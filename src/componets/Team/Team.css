@@ -1,0 +1,130 @@
+.team-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f10d0d;
+}
+
+.team-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  color: #e40b0b;
+}
+
+.filters {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filters label {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.filters select {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.filters select:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.user-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.user-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #f0f0f0;
+}
+
+.user-actions button.liked {
+  background-color: #d9534f; /* Red shade */
+}
+
+.user-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.user-card p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.user-actions {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.user-actions button,
+.user-actions a {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.user-actions button {
+  background-color: #28a745;
+  border: none;
+  cursor: pointer;
+}
+
+.user-actions a {
+  background-color: #007bff;
+}
+
+.user-actions button:hover,
+.user-actions a:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .users-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}

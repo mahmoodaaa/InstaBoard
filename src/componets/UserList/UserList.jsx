@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import UserCard from '../UserCard/UserCard';
 import './UserList.css';
 
@@ -10,36 +10,47 @@ const UserList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const fetchUsers = async () => {
+  const navigate = useNavigate();
+
+  const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`https://randomuser.me/api/?results=12&page=${page}`);
-      const newUsers = response.data.results.map(user => ({
+      const response = await fetch(`https://randomuser.me/api/?results=12&page=${page}`);
+      const data = await response.json();
+      
+      const newUsers = data.results.map(user => ({
         picture: user.picture.large,
         name: `${user.name.first} ${user.name.last}`,
-        email: user.email
+        email: user.email,
+        joined: user.registered.date,
+        role: 'User'
       }));
+
       setUsers(prevUsers => [...prevUsers, ...newUsers]);
       setPage(prev => prev + 1);
     } catch (error) {
       console.error('Error fetching users:', error);
+      setUsers([{
+        name: 'Error loading users',
+        email: 'Please try again later',
+        picture: 'https://via.placeholder.com/150'
+      }]);
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, setUsers, setPage]);
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [fetchUsers]);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  };
 
   const filteredUsers = users.filter(user => 
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle('dark-mode');
-  };
 
   return (
     <div className="user-list-container">
@@ -53,21 +64,14 @@ const UserList = () => {
             className="search-input"
           />
         </div>
-        <button 
-          onClick={toggleDarkMode}
-          className="theme-toggle"
-        >
-          {isDarkMode ? '☀️' : '🌙'}
-        </button>
       </div>
       
       <div className="user-grid">
         {filteredUsers.map((user, index) => (
           <UserCard
             key={index}
-            picture={user.picture}
-            name={user.name}
-            email={user.email}
+            user={user}
+            onClick={() => navigate(`/user/${index}`)}
           />
         ))}
       </div>

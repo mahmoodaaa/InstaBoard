@@ -1,19 +1,43 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './UserCard.css';
 
-const UserCard = ({ picture, name, email }) => {
+const UserCard = ({ user = {}, onClick }) => {
   const [likes, setLikes] = useState(0);
   const [showEmail, setShowEmail] = useState(false);
 
   const handleLike = () => {
+    if (!user.id) {
+      alert('User not found!');
+      return;
+    }
     setLikes(prevLikes => prevLikes + 1);
   };
 
+  if (!user.id) {
+    return (
+      <div className="user-card not-found">
+        <h3>User Not Found</h3>
+      </div>
+    );
+  }
+
   return (
-    <div className="user-card">
+    <div 
+      className="user-card" 
+      onClick={onClick}
+      style={{ cursor: onClick ? 'pointer' : 'default' }}
+    >
       <div className="user-profile">
-        <img src={picture} alt={name} className="user-image" />
-        <h3>{name}</h3>
+        <img 
+          src={user.picture || 'https://via.placeholder.com/150'} 
+          alt={user.name} 
+          className="user-image" 
+        />
+        <h3>{user.name || 'No Name'}</h3>
+        {showEmail && (
+          <p className="user-email">{user.email || 'No email available'}</p>
+        )}
       </div>
       
       <div className="user-actions">
@@ -29,12 +53,6 @@ const UserCard = ({ picture, name, email }) => {
           {showEmail ? 'Hide Email' : 'Show Email'}
         </button>
       </div>
-
-      {showEmail && (
-        <div className="user-email">
-          <p>Email: {email}</p>
-        </div>
-      )}
     </div>
   );
 };
